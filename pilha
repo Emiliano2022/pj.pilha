@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#define MAXTAM 1000
+
+int pilha[MAXTAM];
+int Topo;
+
+void Pilha_Construtor(){
+    Topo = -1; // inicializa o topo da pilha
+}
+
+bool Pilha_Cheia (){
+    	if (Topo == MAXTAM - 1) {
+         return true;
+      		} else {
+        		return false;
+    }
+}
+
+bool Pilha_Vazia(){
+    if (Topo == -1) {
+      return true;
+    	} else {
+        	return false;
+    }
+}
+
+int Pilha_Tamanho(){
+    return Topo + 1;
+}
+
+bool push(int valor) {
+    	if (Pilha_Cheia()) { // verifica se a pilha está cheia
+        return false;
+    }
+    Topo++; // incrementa o topo
+     	pilha[Topo] = valor; // adiciona o valor no topo da pilha
+    	 return true;
+}
+
+bool pop(int *valor) {
+   		 if (Pilha_Vazia()) { // verifica se a pilha está vazia
+          return false;
+    }
+    *valor = pilha[Topo]; // armazena o valor do topo na variável valor
+   		Topo--; // decrementa o topo
+   		  return true;
+}
+bool Pilha_Get(int *valor){ // consulta
+    if (Pilha_Vazia()){
+        return false;
+    	 } else {
+          *valor = pilha[Topo];
+           return true;
+    }
+}
+
+main (){
+	Pilha_Construtor();
+	push(5);
+	push(12);
+	push(35);
+printf("A quantidade de itens e: %d\n", Pilha_Tamanho());
+	pop(1);
+printf("A quantidade de itens e: %d\n", Pilha_Tamanho());
+    return 0;
+}
